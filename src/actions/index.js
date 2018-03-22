@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export const SET_DATE = 'SET_DATE';
 export const SET_FOCUSED = 'SET_FOCUSED';
 

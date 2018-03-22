@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { SingleDatePicker } from 'react-dates';
 import moment from 'moment';
 import { setDate, setFocused } from '../actions'
+import { Button } from 'reactstrap';
 
 const DatePicker = (props) => {
     return (
@@ -15,6 +16,7 @@ const DatePicker = (props) => {
           numberOfMonths={1}
           displayFormat="YYYY/MM/DD"
           isOutsideRange={() => false}
+          showDefaultInputIcon={true}
         />
       </div>
     );
