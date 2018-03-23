@@ -6,12 +6,11 @@ export default class App extends Component {
     return (
       <div className="container" >
         <div className="jumbotron">
-          <h1>Bootstrap Tutorial</h1>
         </div>
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-md-4">
           </div>
-          <div className="col-md-6">
+          <div className="col-md-8">
             <DatePicker />
           </div>
         </div>
