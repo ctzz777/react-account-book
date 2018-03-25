@@ -18,3 +18,23 @@ a:hover {
   background-color: white;
   color: #757575;
 }
+
+.CalendarDay__selected,
+.CalendarDay__selected:hover,
+.CalendarDay__selected:active {
+  background: #FFA500;
+  border: #FFA500;
+}
+
+.DayPickerKeyboardShortcuts_show__bottomRight,
+.DayPickerKeyboardShortcuts_show__bottomRight:hover {
+  border-right: 33px solid #FFA500;
+}
+
+.DateInput_input__focused {
+  border-bottom: 2px solid #FFA500;
+}
+
+.DayPicker_portal__horizontal {
+  top: 35%;
+}

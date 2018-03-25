@@ -52,6 +52,7 @@ class DatePicker extends Component {
           displayFormat="YYYY/MM/DD"
           isOutsideRange={() => false}
           showDefaultInputIcon={true}
+          withFullScreenPortal={true}
         />
         <a href="#" className="navi" onClick={this.onNextDate}>&#8250;</a>
       </div>
