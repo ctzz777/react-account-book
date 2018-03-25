@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DatePicker from './datePicker';
+import DatePicker from './DatePicker';
 
 export default class App extends Component {
   render() {

@@ -6,49 +6,71 @@ import { setDate, setFocused, prevDate, nextDate } from '../actions'
 import { Button } from 'reactstrap';
 import './datePicker.css';
 
-const DatePicker = (props) => {
-  return (
-    <div>
-      <a href="#" className="navi" onClick={props.prevDate}>&#8249;</a>
-      <SingleDatePicker
-        date={props.date} // momentPropTypes.momentObj or null
-        onDateChange={props.setDate} // PropTypes.func.isRequired
-        focused={props.focused} // PropTypes.bool
-        onFocusChange={props.setFocused} // PropTypes.func.isRequired
-        numberOfMonths={1}
-        displayFormat="YYYY/MM/DD"
-        isOutsideRange={() => false}
-        showDefaultInputIcon={true}
-      />
-      <a href="#" className="navi" onClick={props.nextDate}>&#8250;</a>
-    </div>
-  );
+class DatePicker extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      focused: false,
+    };
+
+    this.onFocusChange = this.onFocusChange.bind(this);
+    this.onPrevDate = this.onPrevDate.bind(this);
+    this.onNextDate = this.onNextDate.bind(this);
+  }
+
+  onFocusChange({ focused }) {
+    this.setState({ focused });
+  }
+
+  onPrevDate(e) {
+    const { date, onDateChange } = this.props;
+    e.preventDefault();
+    const newDate = date.clone().add(-1, 'day');
+    onDateChange(newDate);
+  }
+
+  onNextDate(e) {
+    const { date, onDateChange } = this.props;
+    e.preventDefault();
+    const newDate = date.clone().add(1, 'day');
+    onDateChange(newDate);
+  }
+
+  render() {
+    const { focused } = this.state;
+    const { date, onDateChange } = this.props;
+
+    return (
+      <div>
+        <a href="#" className="navi" onClick={this.onPrevDate}>&#8249;</a>
+        <SingleDatePicker
+          date={date} // momentPropTypes.momentObj or null
+          onDateChange={onDateChange} // PropTypes.func.isRequired
+          focused={focused} // PropTypes.bool
+          onFocusChange={this.onFocusChange} // PropTypes.func.isRequired
+          numberOfMonths={1}
+          displayFormat="YYYY/MM/DD"
+          isOutsideRange={() => false}
+          showDefaultInputIcon={true}
+        />
+        <a href="#" className="navi" onClick={this.onNextDate}>&#8250;</a>
+      </div>
+    );
+  }
 };
 
 const mapStateToProps = state => {
   return {
     date: state.datePicker.date,
-    focused: state.datePicker.focused,
-  }
+  };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    setDate: date => {
+    onDateChange: (date) => {
       dispatch(setDate(date));
     },
-    setFocused: ({focused}) => {
-      dispatch(setFocused(focused));
-    },
-    prevDate: (e) => {
-      e.preventDefault();
-      dispatch(prevDate());
-    }, 
-    nextDate: (e) => {
-      e.preventDefault();
-      dispatch(nextDate());
-    }
-  }
+  };
 }
 
 export default connect(
