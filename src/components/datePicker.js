@@ -9,7 +9,7 @@ import './datePicker.css';
 const DatePicker = (props) => {
   return (
     <div>
-      <a href="#" class="navi" onClick={props.prevDate}>&#8249;</a>
+      <a href="#" className="navi" onClick={props.prevDate}>&#8249;</a>
       <SingleDatePicker
         date={props.date} // momentPropTypes.momentObj or null
         onDateChange={props.setDate} // PropTypes.func.isRequired
@@ -20,7 +20,7 @@ const DatePicker = (props) => {
         isOutsideRange={() => false}
         showDefaultInputIcon={true}
       />
-      <a href="#" class="navi" onClick={props.nextDate}>&#8250;</a>
+      <a href="#" className="navi" onClick={props.nextDate}>&#8250;</a>
     </div>
   );
 };
@@ -40,10 +40,12 @@ const mapDispatchToProps = dispatch => {
     setFocused: ({focused}) => {
       dispatch(setFocused(focused));
     },
-    prevDate: () => {
+    prevDate: (e) => {
+      e.preventDefault();
       dispatch(prevDate());
     }, 
-    nextDate: () => {
+    nextDate: (e) => {
+      e.preventDefault();
       dispatch(nextDate());
     }
   }
