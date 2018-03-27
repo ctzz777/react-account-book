@@ -1,18 +1,28 @@
 import { combineReducers } from 'redux';
-import { SET_DATE } from '../actions';
+import { SET_DATE, RECEIVE_ACCOUNTS } from '../actions';
 import moment from 'moment';
 
-const datePicker = (state={date: moment(), focused:false}, action) => {
+const date = (state=moment(), action) => {
   switch (action.type) {
     case SET_DATE:
-      return {...state, date: action.date};
+      return action.date;
+    default:
+      return state;
+  }
+};
+
+const accounts = (state=[], action) => {
+  switch (action.type) {
+    case RECEIVE_ACCOUNTS:
+      return action.accounts;
     default:
       return state;
   }
 };
 
 const rootReducer = combineReducers({
-  datePicker
+  date,
+  accounts,
 });
 
 export default rootReducer;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { SingleDatePicker } from 'react-dates';
 import moment from 'moment';
-import { setDate, setFocused, prevDate, nextDate } from '../actions'
+import { setDate } from '../actions';
 import { Button } from 'reactstrap';
 import './datePicker.css';
 
@@ -60,21 +60,4 @@ class DatePicker extends Component {
   }
 };
 
-const mapStateToProps = state => {
-  return {
-    date: state.datePicker.date,
-  };
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onDateChange: (date) => {
-      dispatch(setDate(date));
-    },
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DatePicker);
+export default DatePicker;
