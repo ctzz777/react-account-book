@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import moment from 'moment';
 import DatePicker from './DatePicker';
 import AccountList from './AccountList';
-import { setDate, receiveAccounts } from '../actions'
+import { setDate, fetchAccounts } from '../actions'
 
 class AccountPage extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class AccountPage extends Component {
 
   componentDidMount() {
     const { dispatch, date } = this.props;
-    dispatch(receiveAccounts(date));
+    dispatch(fetchAccounts(date));
   }
 
   render() {
@@ -60,7 +60,7 @@ const mapDispatchToProps = dispatch => {
     dispatch,
     handleDateChange: date => {
       dispatch(setDate(date));
-      dispatch(receiveAccounts(date));
+      dispatch(fetchAccounts(date));
     },
   };
 }

@@ -1,9 +1,17 @@
 import moment from 'moment';
+import axios from 'axios';
 
+const authToken = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhYjI5MjgwZTU3MWEyMTY5MzNmZDIxNCIsImlhdCI6MTUyMjI1NDA5MywiZXhwIjoxNTIyMzQ0MDkzfQ.ljpnzfbDNOEA8pWRVczhg28Y3lDLybSv46k_uyka3n4';
+axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.headers.common['Authorization'] = authToken;
+
+const accountBookId = '5ab29280e571a216933fd215';
 const formatPattern = 'YYYYMMDD';
 
 export const SET_DATE = 'SET_DATE';
-export const RECEIVE_ACCOUNTS = 'RECEIVE_ACCOUNTS';
+export const FETCH_ACCOUNTS_REQUEST = 'FETCH_ACCOUNTS_REQUEST';
+export const FETCH_ACCOUNTS_SUCCESS = 'FETCH_ACCOUNTS_SUCCESS';
+export const FETCH_ACCOUNTS_FAILURE = 'FETCH_ACCOUNTS_FAILURE';
 
 export const setDate = date => {
   return {
@@ -12,25 +20,34 @@ export const setDate = date => {
   };
 }
 
-export const receiveAccounts = date => {
-  const formatDate = date.format(formatPattern);
-  console.log(formatDate);
-  const accounts = {
-    '20180327': [
-      {_id: 1, category: {name: 'breakfast'}, amount: 100},
-      {_id: 2, category: {name: 'MRT'}, amount: 25}
-    ],
-    '20180326': [
-      {_id: 3, category: {name: 'lunch'}, amount: 400},
-      {_id: 4, category: {name: 'train'}, amount: 18}
-    ],
-    '20180328': [
-      {_id: 5, category: {name: 'dinner'}, amount: 800},
-      {_id: 6, category: {name: 'ubike'}, amount: 5}
-    ],
-  }
+const fetchAccountsRequest = () => {
   return {
-    type: RECEIVE_ACCOUNTS,
-    accounts: accounts[formatDate] ? accounts[formatDate] : [],
+    type: FETCH_ACCOUNTS_REQUEST
   };
+};
+
+const fetchAccountsSuccess = (accounts) => {
+  return {
+    type: FETCH_ACCOUNTS_SUCCESS,
+    accounts,
+  };
+};
+
+const fetchAccountsfailure = (error) => {
+  return {
+    type: FETCH_ACCOUNTS_FAILURE,
+    error,
+  };
+};
+
+export const fetchAccounts = date => dispatch => {
+  const formatDate = date.format(formatPattern);
+  dispatch(fetchAccountsRequest());
+  axios.get(`/api/account/accountBook/${accountBookId}/date/${formatDate}`)
+    .then((res) => {
+      dispatch(fetchAccountsSuccess(res.data));
+    })
+    .catch((error) => {
+      dispatch(fetchAccountsfailure(error));
+    });
 }

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { SET_DATE, RECEIVE_ACCOUNTS } from '../actions';
+import { SET_DATE, FETCH_ACCOUNTS_REQUEST, FETCH_ACCOUNTS_SUCCESS, FETCH_ACCOUNTS_FAILURE } from '../actions';
 import moment from 'moment';
 
 const date = (state=moment(), action) => {
@@ -13,8 +13,11 @@ const date = (state=moment(), action) => {
 
 const accounts = (state=[], action) => {
   switch (action.type) {
-    case RECEIVE_ACCOUNTS:
+    case FETCH_ACCOUNTS_SUCCESS:
+    case FETCH_ACCOUNTS_SUCCESS:
       return action.accounts;
+    case FETCH_ACCOUNTS_FAILURE:
+      return [];
     default:
       return state;
   }
