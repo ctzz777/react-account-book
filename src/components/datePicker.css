@@ -19,6 +19,14 @@ a:hover {
   color: #757575;
 }
 
+.navi.left {
+  border-radius: 5px 0px 0px 5px;
+}
+
+.navi.right {
+  border-radius: 0px 5px 5px 0px;
+}
+
 .CalendarDay__selected,
 .CalendarDay__selected:hover,
 .CalendarDay__selected:active {

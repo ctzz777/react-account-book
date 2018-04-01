@@ -42,7 +42,7 @@ class DatePicker extends Component {
 
     return (
       <div>
-        <a href="#" className="navi" onClick={this.onPrevDate}>&#8249;</a>
+        <a href="#" className="navi left" onClick={this.onPrevDate}>&#8249;</a>
         <SingleDatePicker
           date={date} // momentPropTypes.momentObj or null
           onDateChange={onDateChange} // PropTypes.func.isRequired
@@ -54,7 +54,7 @@ class DatePicker extends Component {
           showDefaultInputIcon={true}
           withFullScreenPortal={true}
         />
-        <a href="#" className="navi" onClick={this.onNextDate}>&#8250;</a>
+        <a href="#" className="navi right" onClick={this.onNextDate}>&#8250;</a>
       </div>
     );
   }
