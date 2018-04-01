@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import { ListGroup } from 'reactstrap';
+import { Button, List, Segment } from 'semantic-ui-react'
 import AccountItem from './AccountItem';
 import './AccountList.css';
 
 const AccountList = ({ accounts }) => {
   return (
-    <ListGroup>
-      {accounts.map(account =>
-        <AccountItem
-          key={account._id}
-          category={account.category.name}
-          amount={account.amount}
-        />
-      )}
-    </ListGroup>
+      <List celled size="big">
+        {accounts.map(account =>
+          <AccountItem 
+            key={account._id}
+            category={account.category.name}
+            amount={account.amount}
+          />
+        )}
+      </List>
   );
 };
 

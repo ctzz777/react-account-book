@@ -1,7 +1,7 @@
 a {
   text-decoration: none;
   display: inline-block;
-  padding: 9px 21px;
+  padding: 13px 22px;
 }
 
 a:hover {
@@ -28,7 +28,15 @@ a:hover {
 
 .DayPickerKeyboardShortcuts_show__bottomRight,
 .DayPickerKeyboardShortcuts_show__bottomRight:hover {
-  border-right: 33px solid #FFA500;
+  display: none;
+}
+
+.CalendarMonth_caption {
+  padding-bottom: 43px;
+}
+
+.SingleDatePicker_picker__fullScreenPortal {
+  top: 55px !important;
 }
 
 .DateInput_input__focused {

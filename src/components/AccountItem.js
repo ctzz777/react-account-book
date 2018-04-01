@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import { ListGroupItem } from 'reactstrap';
-import './AccountItem.css';
+import { List } from 'semantic-ui-react'
 
 const AccountItem = ({ category, amount }) => {
   return (
-    <ListGroupItem>
-      <span className="category">{category}</span>
-      <span className="amount">${amount}</span>
-    </ListGroupItem>
+    <List.Item>
+      <List.Content floated="left">
+        {category}
+      </List.Content>
+      <List.Content floated="right">
+        ${amount}
+      </List.Content>
+    </List.Item>
   );
 };
 
