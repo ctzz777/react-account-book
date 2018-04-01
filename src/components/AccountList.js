@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Button, List, Segment } from 'semantic-ui-react'
+import { List, Segment } from 'semantic-ui-react'
 import AccountItem from './AccountItem';
-import './AccountList.css';
 
 const AccountList = ({ accounts }) => {
   return (

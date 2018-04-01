@@ -19,18 +19,22 @@ class AccountPage extends Component {
     const { date, accounts, total, handleDateChange } = this.props;
 
     return (
-      <div className="container" >
+      <div className="ui grid">
         <div className="row">
-          <DatePicker 
-            date={date}
-            onDateChange={handleDateChange}
-          />
+          <div className="column">
+            <DatePicker 
+              date={date}
+              onDateChange={handleDateChange}
+            />
+          </div>
         </div>
         <div className="row">
-          ${total}
+          <div className="column">
+            <h3>${total}</h3>
+          </div>
         </div>
         <div className="row">
-          <div className="col-md-12">
+          <div className="column">
             <AccountList 
               accounts={accounts}
             />
