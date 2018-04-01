@@ -4,7 +4,8 @@ import AccountItem from './AccountItem';
 
 const AccountList = ({ accounts }) => {
   return (
-      <List celled size="big">
+    <Segment>
+      <List divided relaxed size="big">
         {accounts.map(account =>
           <AccountItem 
             key={account._id}
@@ -13,6 +14,7 @@ const AccountList = ({ accounts }) => {
           />
         )}
       </List>
+    </Segment>
   );
 };
 

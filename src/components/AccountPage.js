@@ -34,7 +34,7 @@ class AccountPage extends Component {
           </div>
         </div>
         <div className="row">
-          <div className="column">
+          <div className="twelve wide column">
             <AccountList 
               accounts={accounts}
             />
