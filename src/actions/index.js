@@ -1,7 +1,7 @@
 import moment from 'moment';
 import axios from 'axios';
 
-const authToken = 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhYjI5MjgwZTU3MWEyMTY5MzNmZDIxNCIsImlhdCI6MTUyMjU4Mjk4MywiZXhwIjoxNTIyNjcyOTgzfQ.mS8H-HLcZcDXVSX3w3S6w3nQrw6qFnqM_G3loVmdkaA';
+const authToken = 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhYjI5MjgwZTU3MWEyMTY5MzNmZDIxNCIsImlhdCI6MTUyMjY4MTUzNCwiZXhwIjoxNTIyNzcxNTM0fQ.os22MEmXsfFTERxuZNd3pd1QBCIekmxBryLoo-BfklI';
 axios.defaults.baseURL = 'http://localhost:3001';
 axios.defaults.headers.common['Authorization'] = authToken;
 

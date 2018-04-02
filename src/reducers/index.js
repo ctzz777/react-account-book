@@ -24,6 +24,18 @@ const accounts = (state=[], action) => {
   }
 };
 
+const loading = (state=false, action) => {
+  switch (action.type) {
+    case FETCH_ACCOUNTS_REQUEST:
+      return true;
+    case FETCH_ACCOUNTS_SUCCESS:
+    case FETCH_ACCOUNTS_FAILURE:
+      return false;
+    default:
+      return state; 
+  }
+};
+
 const categories = (state=[], action) => {
   switch (action.type) {
     case FETCH_CATEGORIES_REQUEST:
@@ -40,6 +52,7 @@ const categories = (state=[], action) => {
 const rootReducer = combineReducers({
   date,
   accounts,
+  loading,
   categories,
 });
 

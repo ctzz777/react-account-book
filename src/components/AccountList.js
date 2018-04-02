@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { List, Segment } from 'semantic-ui-react'
 import AccountItem from './AccountItem';
 
-const AccountList = ({ accounts }) => {
+const AccountList = ({ accounts, loading }) => {
   return (
-    <Segment>
+    <Segment loading={loading}>
       <List divided relaxed size="big">
         {accounts.map(account =>
           <AccountItem 

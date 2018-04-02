@@ -16,7 +16,7 @@ class AccountPage extends Component {
   }
 
   render() {
-    const { date, accounts, total, handleDateChange } = this.props;
+    const { date, accounts, loading, total, handleDateChange } = this.props;
 
     return (
       <div className="ui grid">
@@ -37,6 +37,7 @@ class AccountPage extends Component {
           <div className="twelve wide column">
             <AccountList 
               accounts={accounts}
+              loading={loading}
             />
           </div>
         </div>
@@ -55,6 +56,7 @@ const mapStateToProps = state => {
   return {
     date: state.date,
     accounts: state.accounts,
+    loading: state.loading,
     total: accountTotal(state.accounts),
   };
 }
