@@ -2,20 +2,20 @@ import React, { Component } from 'react';
 import { Dropdown } from 'semantic-ui-react'
 import { Form } from 'redux-form'
 
-const CategoryList = ({ categories, input, label }) => {
+const CategoryList = ({ categories, input: { value, onChange }, label}) => {
   const options = categories.map(category => ({
     key: category._id,
     text: category.name,
     value: category._id,
     icon: category.icon,
   }));
-  console.log(input.onChange);
+  console.log(value);
   return (
     <Dropdown 
       selection
-      {...input}
-      value={input.value}
-      onChange={(event, data) => input.onChange(data.value)}
+      // {...input}
+      value={value}
+      onChange={(event, data) => onChange(data.value)}
       fluid
       placeholder={label}
       options={options}

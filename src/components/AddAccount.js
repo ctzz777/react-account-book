@@ -15,9 +15,9 @@ class AddAccount extends Component {
   }
 
   render() {
-    const { categories, handleSubmit, onSubmit } = this.props;
+    const { categories, handleSubmit } = this.props;
     return (
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit}>
         <div>
           <Field
             name="category"
@@ -40,20 +40,11 @@ const mapStateToProps = state => {
   };
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    dispatch,
-    onSubmit: (values, qq, aa) => {
-      console.log(values, qq, aa);
-    },
-  };
-}
-
 AddAccount = connect(
   mapStateToProps,
-  mapDispatchToProps,
 )(AddAccount);
 
 export default reduxForm({
-  form: 'AddAccount'
+  form: 'AddAccount',
+  onSubmit: (value) => alert(JSON.stringify(value, null, 2))
 })(AddAccount);
