@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import moment from 'moment';
 import DatePicker from './DatePicker';
 import AccountList from './AccountList';
+import AddAccount from './AddAccount';
 import { setDate, fetchAccounts } from '../actions'
 
 class AccountPage extends Component {
@@ -39,6 +40,11 @@ class AccountPage extends Component {
               accounts={accounts}
               loading={loading}
             />
+          </div>
+        </div>
+        <div className="row">
+          <div className="twelve wide column">
+            <AddAccount /> 
           </div>
         </div>
       </div>

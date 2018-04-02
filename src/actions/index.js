@@ -12,6 +12,10 @@ export const SET_DATE = 'SET_DATE';
 export const FETCH_ACCOUNTS_REQUEST = 'FETCH_ACCOUNTS_REQUEST';
 export const FETCH_ACCOUNTS_SUCCESS = 'FETCH_ACCOUNTS_SUCCESS';
 export const FETCH_ACCOUNTS_FAILURE = 'FETCH_ACCOUNTS_FAILURE';
+export const FETCH_CATEGORIES_REQUEST = 'FETCH_CATEGORIES_REQUEST';
+export const FETCH_CATEGORIES_SUCCESS = 'FETCH_CATEGORIES_SUCCESS';
+export const FETCH_CATEGORIES_FAILURE = 'FETCH_CATEGORIES_FAILURE';
+
 
 export function setDate(date) {
   return {
@@ -60,7 +64,7 @@ function fetchCategoriesRequest() {
   };
 };
 
-function fetchCategoriesSuccess(accounts) {
+function fetchCategoriesSuccess(categories) {
   return {
     type: FETCH_CATEGORIES_SUCCESS,
     categories,

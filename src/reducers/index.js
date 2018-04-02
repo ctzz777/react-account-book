@@ -41,7 +41,7 @@ const categories = (state=[], action) => {
     case FETCH_CATEGORIES_REQUEST:
       return state;
     case FETCH_CATEGORIES_SUCCESS:
-      return action.accounts;
+      return action.categories;
     case FETCH_CATEGORIES_FAILURE:
       return [];
     default:
