@@ -21,7 +21,7 @@ class AddAccount extends Component {
         <div>
           <Field
             name="category"
-            label="category"
+            label="select category"
             component={CategoryList}
             categories={categories}
           />

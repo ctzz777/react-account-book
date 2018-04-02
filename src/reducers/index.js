@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form'
 import { SET_DATE, FETCH_ACCOUNTS_REQUEST, FETCH_ACCOUNTS_SUCCESS, FETCH_ACCOUNTS_FAILURE, SET_SELECTED_CATEGORY, FETCH_CATEGORIES_REQUEST, FETCH_CATEGORIES_SUCCESS, FETCH_CATEGORIES_FAILURE } from '../actions';
 import moment from 'moment';
 
@@ -54,6 +55,7 @@ const rootReducer = combineReducers({
   accounts,
   loading,
   categories,
+  form: formReducer,
 });
 
 export default rootReducer;

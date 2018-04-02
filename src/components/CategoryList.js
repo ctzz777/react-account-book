@@ -9,11 +9,9 @@ const CategoryList = ({ categories, input: { value, onChange }, label}) => {
     value: category._id,
     icon: category.icon,
   }));
-  console.log(value);
   return (
     <Dropdown 
       selection
-      // {...input}
       value={value}
       onChange={(event, data) => onChange(data.value)}
       fluid
