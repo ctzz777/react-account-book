@@ -21,7 +21,7 @@ class AddAccount extends Component {
         <div>
           <Field
             name="category"
-            label="select category"
+            label="Select Category"
             component={CategoryList}
             categories={categories}
           />
@@ -36,6 +36,7 @@ class AddAccount extends Component {
 
 const mapStateToProps = state => {
   return {
+    date: state.date.format('YYYYMMDD'),
     categories: state.categories,
   };
 }

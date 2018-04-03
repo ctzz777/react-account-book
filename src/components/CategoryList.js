@@ -21,22 +21,4 @@ const CategoryList = ({ categories, input: { value, onChange }, label}) => {
   );
 };
 
-// const CategoryList = ({ categories, selectedCategory, handleSelectedCategoryChange }) => {
-//   const options = categories.map(category => ({
-//     text: category.name,
-//     value: category._id,
-//     icon: category.icon,
-//   }));
-//   return (
-//     <Dropdown 
-//       value={selectedCategory}
-//       onChange={handleSelectedCategoryChange}
-//       fluid
-//       selection
-//       placeholder='Select Category'
-//       options={options}
-//     />
-//   );
-// };
-
 export default CategoryList;

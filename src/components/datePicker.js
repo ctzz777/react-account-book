@@ -53,6 +53,7 @@ class DatePicker extends Component {
           isOutsideRange={() => false}
           showDefaultInputIcon={true}
           withFullScreenPortal={true}
+          readOnly
         />
         <a href="#" className="navi right" onClick={this.onNextDate}>&#8250;</a>
       </div>
