@@ -88,7 +88,7 @@ class AddAccount extends Component {
   }
 
   render() {
-    const { categories, handleSubmit } = this.props;
+    const { categories, handleSubmit, pristine, reset, submitting } = this.props;
     return (
       <Form onSubmit={handleSubmit}>
         <div className="ui grid">
@@ -139,7 +139,8 @@ class AddAccount extends Component {
           </div>
           <div className="row">
             <div className="column">
-              <Button positive type="submit">Submit</Button>
+              <Button positive type="submit" disabled={pristine||submitting}>Submit</Button>
+              <Button negative onClick={reset} disabled={pristine||submitting}>Clear</Button>
             </div>
           </div>
         </div>
