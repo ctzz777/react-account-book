@@ -25,9 +25,10 @@ const validate = values => {
 }
 
 const DescriptionField = ({input, label, ...custom}) => (
-  <TextArea
+  <Form.TextArea
     rows={3}
     autoHeight
+    label={label}
     placeholder={label}
     {...input}
     {...custom}
@@ -37,6 +38,7 @@ const DescriptionField = ({input, label, ...custom}) => (
 const AmountField = ({input, label, meta: {touched, error}, ...custom}) => (
   <Form.Input
     fluid
+    label={label}
     icon="dollar"
     iconPosition='left'
     error={!!(touched&&error)}
@@ -49,6 +51,7 @@ const AmountField = ({input, label, meta: {touched, error}, ...custom}) => (
 const DateField = ({input, label, ...custom}) => (
   <Form.Input
     fluid
+    label={label}
     icon="calendar"
     iconPosition='left'
     placeholder={label}
@@ -64,15 +67,18 @@ const CategorySelectorField = ({ categories, input: { value, onChange }, meta: {
     icon: category.icon,
   }));
   return (
-    <Dropdown
-      selection
-      value={value}
-      onChange={(event, data) => onChange(data.value)}
-      fluid
-      error={!!(touched&&error)}
-      placeholder={label}
-      options={options}
-    />
+    <Form.Field>
+      <label>{label}</label>
+      <Dropdown
+        selection
+        value={value}
+        onChange={(event, data) => onChange(data.value)}
+        fluid
+        error={!!(touched&&error)}
+        placeholder={label}
+        options={options}
+      />
+    </Form.Field>
   );
 };
 
@@ -93,10 +99,9 @@ class AddAccount extends Component {
         <div className="ui grid">
           <div className="row">
             <div className="column">
-              <label><b>Date</b></label>
               <Field
                 name="date"
-                label="Input Date"
+                label="Date"
                 format={value => moment(value).format('YYYY/MM/DD')}
                 normalize={(value, previousValue) => previousValue}
                 component={DateField}
@@ -105,11 +110,10 @@ class AddAccount extends Component {
           </div>
           <div className="row">
             <div className="column">
-              <label><b>Amount</b></label>
               <Field
                 name="amount"
                 type="number"
-                label="Input Amount"
+                label="Amount"
                 normalize={value => isNaN(parseInt(value, 10)) ? null : parseInt(value, 10)}
                 component={AmountField}
               />
@@ -117,10 +121,9 @@ class AddAccount extends Component {
           </div>
           <div className="row">
             <div className="column">
-              <label><b>Category</b></label>
               <Field
                 name="category"
-                label="Select Category"
+                label="Category"
                 component={CategorySelectorField}
                 categories={categories}
               />
@@ -128,10 +131,9 @@ class AddAccount extends Component {
           </div>
           <div className="row">
             <div className="column">
-              <label><b>Description</b></label>
               <Field
                 name="description"
-                label="Input Description"
+                label="Description"
                 component={DescriptionField}
               />
             </div>
