@@ -26,7 +26,7 @@ const validate = values => {
 
 const DescriptionField = ({input, label, ...custom}) => (
   <Form.TextArea
-    rows={3}
+    rows={4}
     autoHeight
     label={label}
     placeholder={label}
@@ -96,7 +96,8 @@ class AddAccount extends Component {
       <Form onSubmit={handleSubmit}>
         <div className="ui grid">
           <div className="row">
-            <div className="column">
+            <div className="one wide column" />
+            <div className="six wide computer sixteen wide mobile column">
               <Field
                 name="date"
                 label="Date"
@@ -107,7 +108,8 @@ class AddAccount extends Component {
             </div>
           </div>
           <div className="row">
-            <div className="column">
+            <div className="one wide column" />
+            <div className="six wide computer sixteen wide mobile column">
               <Field
                 name="amount"
                 type="number"
@@ -118,7 +120,8 @@ class AddAccount extends Component {
             </div>
           </div>
           <div className="row">
-            <div className="column">
+            <div className="one wide column" />
+            <div className="six wide computer sixteen wide mobile column">
               <Field
                 name="category"
                 label="Category"
@@ -128,7 +131,8 @@ class AddAccount extends Component {
             </div>
           </div>
           <div className="row">
-            <div className="column">
+            <div className="one wide column" />
+            <div className="six wide computer sixteen wide mobile column">
               <Field
                 name="description"
                 label="Description"
@@ -137,7 +141,8 @@ class AddAccount extends Component {
             </div>
           </div>
           <div className="row">
-            <div className="column">
+            <div className="one wide computer only column" />
+            <div className="twelve wide column">
               <Button positive type="submit" disabled={pristine||submitting}>Add</Button>
               <Button negative onClick={reset} disabled={pristine||submitting}>Clear</Button>
             </div>
