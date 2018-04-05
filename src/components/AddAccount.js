@@ -94,9 +94,8 @@ class AddAccount extends Component {
     const { categories, handleSubmit, pristine, reset, submitting } = this.props;
     return (
       <Form onSubmit={handleSubmit}>
-        <div className="ui grid">
+        <div className="ui centered grid">
           <div className="row">
-            <div className="one wide column" />
             <div className="six wide computer sixteen wide mobile column">
               <Field
                 name="date"
@@ -108,7 +107,6 @@ class AddAccount extends Component {
             </div>
           </div>
           <div className="row">
-            <div className="one wide column" />
             <div className="six wide computer sixteen wide mobile column">
               <Field
                 name="amount"
@@ -120,7 +118,6 @@ class AddAccount extends Component {
             </div>
           </div>
           <div className="row">
-            <div className="one wide column" />
             <div className="six wide computer sixteen wide mobile column">
               <Field
                 name="category"
@@ -131,7 +128,6 @@ class AddAccount extends Component {
             </div>
           </div>
           <div className="row">
-            <div className="one wide column" />
             <div className="six wide computer sixteen wide mobile column">
               <Field
                 name="description"
@@ -141,8 +137,7 @@ class AddAccount extends Component {
             </div>
           </div>
           <div className="row">
-            <div className="one wide computer only column" />
-            <div className="twelve wide column">
+            <div className="six wide computer sixteen wide mobile column">
               <Button positive type="submit" disabled={pristine||submitting}>Add</Button>
               <Button negative onClick={reset} disabled={pristine||submitting}>Clear</Button>
             </div>
