@@ -67,18 +67,16 @@ const CategorySelectorField = ({ categories, input: { value, onChange }, meta: {
     icon: category.icon,
   }));
   return (
-    <Form.Field>
-      <label>{label}</label>
-      <Dropdown
-        selection
-        value={value}
-        onChange={(event, data) => onChange(data.value)}
-        fluid
-        error={!!(touched&&error)}
-        placeholder={label}
-        options={options}
-      />
-    </Form.Field>
+    <Form.Dropdown
+      selection
+      value={value}
+      label={label}
+      onChange={(event, data) => onChange(data.value)}
+      fluid
+      error={!!(touched&&error)}
+      placeholder={label}
+      options={options}
+    />
   );
 };
 
@@ -140,7 +138,7 @@ class AddAccount extends Component {
           </div>
           <div className="row">
             <div className="column">
-              <Button positive type="submit" disabled={pristine||submitting}>Submit</Button>
+              <Button positive type="submit" disabled={pristine||submitting}>Add</Button>
               <Button negative onClick={reset} disabled={pristine||submitting}>Clear</Button>
             </div>
           </div>
