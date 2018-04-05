@@ -49,7 +49,6 @@ const AmountField = ({input, label, meta: {touched, error}, ...custom}) => (
 const DateField = ({input, label, ...custom}) => (
   <Form.Input
     fluid
-    // disabled
     icon="calendar"
     iconPosition='left'
     placeholder={label}
@@ -161,7 +160,10 @@ AddAccount = connect(
 
 export default connect(
   state => ({
-    initialValues: {date: state.date.format('YYYYMMDD')} // pull initial values from account reducer
+    initialValues: {
+      date: state.date.format('YYYYMMDD'),
+      accountBookId: 'lf2.net',
+    } // pull initial values from account reducer
   }),
 )(reduxForm({
   form: 'AddAccount',
