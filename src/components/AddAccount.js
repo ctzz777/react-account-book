@@ -95,8 +95,8 @@ class AddAccount extends Component {
     return (
       <Form onSubmit={handleSubmit}>
         <div className="ui centered grid">
-          <div className="row">
-            <div className="six wide computer sixteen wide mobile column">
+          <div className="stackable doubling three column row">
+            <div className="six wide column">
               <Field
                 name="date"
                 label="Date"
@@ -106,8 +106,8 @@ class AddAccount extends Component {
               />
             </div>
           </div>
-          <div className="row">
-            <div className="six wide computer sixteen wide mobile column">
+          <div className="stackable doubling three column row">
+            <div className="six wide column">
               <Field
                 name="amount"
                 type="number"
@@ -117,8 +117,8 @@ class AddAccount extends Component {
               />
             </div>
           </div>
-          <div className="row">
-            <div className="six wide computer sixteen wide mobile column">
+          <div className="stackable doubling three column row">
+            <div className="six wide column">
               <Field
                 name="category"
                 label="Category"
@@ -127,8 +127,8 @@ class AddAccount extends Component {
               />
             </div>
           </div>
-          <div className="row">
-            <div className="six wide computer sixteen wide mobile column">
+          <div className="stackable doubling three column row">
+            <div className="six wide column">
               <Field
                 name="description"
                 label="Description"
@@ -136,8 +136,8 @@ class AddAccount extends Component {
               />
             </div>
           </div>
-          <div className="row">
-            <div className="six wide computer sixteen wide mobile column">
+          <div className="stackable doubling three column row">
+            <div className="six wide column">
               <Button positive type="submit" disabled={pristine||submitting}>Add</Button>
               <Button negative onClick={reset} disabled={pristine||submitting}>Clear</Button>
             </div>
