@@ -10,7 +10,7 @@ const AccountList = ({ accounts, loading }) => {
           <AccountItem 
             key={account._id}
             id={account._id}
-            category={account.category.name}
+            category={account.category}
             amount={account.amount}
           />
         )}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Icon } from 'semantic-ui-react';
 import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
 import AccountPage from './AccountPage';
 import AddAccount from './AddAccount';
@@ -10,11 +10,12 @@ export default class App extends Component {
     return (
       <Router>
         <div>
-          <Menu pointing secondary>
+          <Menu pointing secondary icon='labeled'>
             <Menu.Item as={NavLink} to='/'>
               Home
             </Menu.Item>
             <Menu.Item as={NavLink} to='/addAccount'>
+              <Icon name='add circle' />
               AddAccount
             </Menu.Item>
           </Menu>
