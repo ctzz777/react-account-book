@@ -18,8 +18,6 @@ export default class App extends Component {
               AddAccount
             </Menu.Item>
           </Menu>
-          {/* <Link to="/">Home</Link>
-          <Link to="/addAccount">AddAccount</Link> */}
           <hr />
           <Route path="/" exact component={AccountPage} />
           <Route path="/addAccount" component={AddAccount} />
