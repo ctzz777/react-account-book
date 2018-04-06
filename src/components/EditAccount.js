@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { Input, Label, Form, TextArea, Button, Dropdown } from 'semantic-ui-react';
 import moment from 'moment';
-import { fetchCategories } from '../actions';
+import { fetchCategories, fetchCurrentAccount } from '../actions';
 import CategoryList from './CategoryList';
 
 const validate = values => {
@@ -80,20 +80,22 @@ const CategorySelectorField = ({ categories, input: { value, onChange }, meta: {
   );
 };
 
-class AddAccount extends Component {
+class EditAccount extends Component {
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
-    const { dispatch } = this.props;
+    const { dispatch, match } = this.props;
+    const id = match.params.id;
     dispatch(fetchCategories());
+    dispatch(fetchCurrentAccount(id));
   }
 
   render() {
-    const { categories, handleSubmit, pristine, reset, submitting } = this.props;
+    const { categories, loading, handleSubmit, pristine, reset, submitting } = this.props;
     return (
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} loading={loading}>
         <div className="ui centered grid">
           <div className="stackable doubling three column row">
             <div className="six wide column">
@@ -138,7 +140,7 @@ class AddAccount extends Component {
           </div>
           <div className="stackable doubling three column row">
             <div className="six wide column">
-              <Button positive type="submit" disabled={pristine||submitting}>Add</Button>
+              <Button positive type="submit" disabled={pristine||submitting}>Save</Button>
               <Button negative onClick={reset} disabled={pristine||submitting}>Clear</Button>
             </div>
           </div>
@@ -151,23 +153,24 @@ class AddAccount extends Component {
 const mapStateToProps = state => {
   return {
     categories: state.categories,
+    loading: state.loading,
   };
 }
 
-AddAccount = connect(
+EditAccount = connect(
   mapStateToProps,
-)(AddAccount);
+)(EditAccount);
 
 export default connect(
   state => ({
     initialValues: {
-      date: state.date.format('YYYYMMDD'),
-      accountBookId: '5ab29280e571a216933fd215',
-    } // pull initial values from account reducer
+      ...state.currentAccount,
+      category: state.currentAccount.category ? state.currentAccount.category._id : null,
+    }
   }),
 )(reduxForm({
-  form: 'AddAccount',
+  form: 'EditAccount',
   validate,
   onSubmit: (value) => alert(JSON.stringify(value, null, 2)),
   enableReinitialize: true,
-})(AddAccount));
+})(EditAccount));

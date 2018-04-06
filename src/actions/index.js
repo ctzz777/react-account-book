@@ -1,7 +1,7 @@
 import moment from 'moment';
 import axios from 'axios';
 
-const authToken = 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhYjI5MjgwZTU3MWEyMTY5MzNmZDIxNCIsImlhdCI6MTUyMjY4MTUzNCwiZXhwIjoxNTIyNzcxNTM0fQ.os22MEmXsfFTERxuZNd3pd1QBCIekmxBryLoo-BfklI';
+const authToken = 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhYjI5MjgwZTU3MWEyMTY5MzNmZDIxNCIsImlhdCI6MTUyMzAyMzUzMCwiZXhwIjoxNTIzMTEzNTMwfQ.-SIBJ3aT2OwGTS6E9FEtMCmt8kGLYrayZEjLlqqmqhQ';
 axios.defaults.baseURL = 'http://localhost:3001';
 axios.defaults.headers.common['Authorization'] = authToken;
 
@@ -15,6 +15,9 @@ export const FETCH_ACCOUNTS_FAILURE = 'FETCH_ACCOUNTS_FAILURE';
 export const FETCH_CATEGORIES_REQUEST = 'FETCH_CATEGORIES_REQUEST';
 export const FETCH_CATEGORIES_SUCCESS = 'FETCH_CATEGORIES_SUCCESS';
 export const FETCH_CATEGORIES_FAILURE = 'FETCH_CATEGORIES_FAILURE';
+export const FETCH_CURRENT_ACCOUNT_REQUEST = 'FETCH_CURRENT_ACCOUNT_REQUEST';
+export const FETCH_CURRENT_ACCOUNT_SUCCESS = 'FETCH_CURRENT_ACCOUNT_SUCCESS';
+export const FETCH_CURRENT_ACCOUNT_FAILURE = 'FETCH_CURRENT_ACCOUNT_FAILURE';
 
 
 export function setDate(date) {
@@ -87,6 +90,39 @@ export function fetchCategories() {
       })
       .catch((error) => {
         dispatch(fetchCategoriesfailure(error));
+      });
+  }
+};
+
+function fetchCurrentAccountRequest() {
+  return {
+    type: FETCH_CURRENT_ACCOUNT_REQUEST
+  };
+};
+
+function fetchCurrentAccountSuccess(currentAccount) {
+  return {
+    type: FETCH_CURRENT_ACCOUNT_SUCCESS,
+    currentAccount,
+  };
+};
+
+function fetchCurrentAccountfailure(error) {
+  return {
+    type: FETCH_CURRENT_ACCOUNT_FAILURE,
+    error,
+  };
+};
+
+export function fetchCurrentAccount(id) {
+  return (dispatch) => {
+    dispatch(fetchCurrentAccountRequest());
+    axios.get(`/api/account/${id}`)
+      .then((res) => {
+        dispatch(fetchCurrentAccountSuccess(res.data));
+      })
+      .catch((error) => {
+        dispatch(fetchCurrentAccountfailure(error));
       });
   }
 };

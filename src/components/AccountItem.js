@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { List } from 'semantic-ui-react'
+import { Link } from 'react-router-dom';
 
-const AccountItem = ({ category, amount }) => {
+const AccountItem = ({ category, amount, id }) => {
   return (
-    <List.Item>
+    <List.Item as={Link} to={`/editAccount/${id}`}>
       <List.Content floated="left">
         {category}
       </List.Content>

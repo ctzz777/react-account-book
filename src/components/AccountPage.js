@@ -42,11 +42,6 @@ class AccountPage extends Component {
             />
           </div>
         </div>
-        <div className="row">
-          <div className="twelve wide column">
-            <AddAccount /> 
-          </div>
-        </div>
       </div>
     );
   }

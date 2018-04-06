@@ -9,6 +9,7 @@ const AccountList = ({ accounts, loading }) => {
         {accounts.map(account =>
           <AccountItem 
             key={account._id}
+            id={account._id}
             category={account.category.name}
             amount={account.amount}
           />
