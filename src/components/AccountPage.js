@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import moment from 'moment';
+import { Label } from 'semantic-ui-react'
 import DatePicker from './DatePicker';
 import AccountList from './AccountList';
 import AddAccount from './AddAccount';
@@ -31,7 +32,7 @@ class AccountPage extends Component {
         </div>
         <div className="stackable doubling three column row">
           <div className="six wide center aligned column">
-            <h3>${total}</h3>
+            <Label circular icon="dollar" content={total} color="blue" size="massive" />
           </div>
         </div>
         <div className="stackable doubling three column row">
