@@ -99,8 +99,8 @@ class DeleteConfirm extends Component {
 
   handleConfirm() {
     const { handleDelete } = this.props;
-    handleDelete();
     this.setState({ open: false });
+    handleDelete();
   }
 
   handleCancel() {
@@ -119,6 +119,7 @@ class DeleteConfirm extends Component {
       <div>
         <Button negative fluid type="button" onClick={this.show}>Delete</Button>
         <Confirm
+          content="Are you sure you want to delete account?"
           style={inlineStyle.modal} 
           confirmButton="Delete"
           open={this.state.open}
