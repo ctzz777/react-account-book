@@ -24,6 +24,9 @@ export const SAVE_ACCOUNT_FAILURE = 'SAVE_ACCOUNT_FAILURE';
 export const UPDATE_ACCOUNT_REQUEST = 'UPDATE_ACCOUNT_REQUEST';
 export const UPDATE_ACCOUNT_SUCCESS = 'UPDATE_ACCOUNT_SUCCESS';
 export const UPDATE_ACCOUNT_FAILURE = 'UPDATE_ACCOUNT_FAILURE';
+export const DELETE_ACCOUNT_REQUEST = 'DELETE_ACCOUNT_REQUEST';
+export const DELETE_ACCOUNT_SUCCESS = 'DELETE_ACCOUNT_SUCCESS';
+export const DELETE_ACCOUNT_FAILURE = 'DELETE_ACCOUNT_FAILURE';
 
 
 export function setDate(date) {
@@ -201,6 +204,39 @@ export function updateAccount(data) {
       })
       .catch((error) => {
         dispatch(updateAccountfailure(error));
+      });
+  }
+};
+
+function deleteAccountRequest() {
+  return {
+    type: DELETE_ACCOUNT_REQUEST
+  };
+};
+
+function deleteAccountSuccess(account) {
+  return {
+    type: DELETE_ACCOUNT_SUCCESS,
+    account,
+  };
+};
+
+function deleteAccountfailure(error) {
+  return {
+    type: DELETE_ACCOUNT_FAILURE,
+    error,
+  };
+};
+
+export function deleteAccount(id) {
+  return (dispatch) => {
+    dispatch(deleteAccountRequest());
+    return axios.delete(`/api/account/${id}`)
+      .then((res) => {
+        dispatch(deleteAccountSuccess(res.data));
+      })
+      .catch((error) => {
+        dispatch(deleteAccountfailure(error));
       });
   }
 };

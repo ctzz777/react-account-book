@@ -4,7 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 import { withRouter } from 'react-router';
 import { Input, Label, Form, TextArea, Button, Modal, Dropdown, Confirm } from 'semantic-ui-react';
 import moment from 'moment';
-import { fetchCategories, fetchCurrentAccount, updateAccount } from '../actions';
+import { fetchCategories, fetchCurrentAccount, updateAccount, deleteAccount } from '../actions';
 import CategoryList from './CategoryList';
 
 const validate = values => {
@@ -94,17 +94,16 @@ class DeleteConfirm extends Component {
   }
 
   show() {
-    console.log('qq')
     this.setState({ open: true });
   }
 
   handleConfirm() {
-    console.log('cqq')
+    const { handleDelete } = this.props;
+    handleDelete();
     this.setState({ open: false });
   }
 
   handleCancel() {
-    console.log('qqq')
     this.setState({ open: false });
   }
 
@@ -134,6 +133,8 @@ class DeleteConfirm extends Component {
 class EditAccount extends Component {
   constructor(props) {
     super(props);
+
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -141,6 +142,14 @@ class EditAccount extends Component {
     const id = match.params.id;
     dispatch(fetchCategories());
     dispatch(fetchCurrentAccount(id));
+  }
+
+  handleDelete() {
+    const { dispatch, match, history } = this.props;
+    const id = match.params.id;
+    dispatch(deleteAccount(id))
+      .then(history.push('/'))
+      .catch(history.push('/'));
   }
 
   render() {
@@ -193,7 +202,9 @@ class EditAccount extends Component {
             <div className="six wide column">
               <Button positive type="submit" disabled={pristine||submitting}>Save</Button>
               <Button negative type="button" onClick={reset} disabled={pristine||submitting}>Recover</Button>
-              <DeleteConfirm />
+              <DeleteConfirm 
+                handleDelete={this.handleDelete}
+              />
             </div>
           </div>
         </div>
