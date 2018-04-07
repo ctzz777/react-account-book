@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { withRouter } from 'react-router';
-import { Input, Label, Form, TextArea, Button, Confirm, Dropdown } from 'semantic-ui-react';
+import { Input, Label, Form, TextArea, Button, Modal, Dropdown, Confirm } from 'semantic-ui-react';
 import moment from 'moment';
 import { fetchCategories, fetchCurrentAccount, updateAccount } from '../actions';
 import CategoryList from './CategoryList';
@@ -109,17 +109,25 @@ class DeleteConfirm extends Component {
   }
 
   render() {
+    const inlineStyle = {
+      modal : {
+        marginTop: '0px !important',
+        marginLeft: 'auto',
+        marginRight: 'auto'
+      }
+    };
     return (
       <div>
+        <Button negative fluid type="button" onClick={this.show}>Delete</Button>
         <Confirm
+          style={inlineStyle.modal} 
           confirmButton="Delete"
           open={this.state.open}
           onCancel={this.handleCancel}
           onConfirm={this.handleConfirm}
         />
-        <Button type="button" onClick={this.show}>Show</Button>
       </div>
-    )
+    );
   }
 }
 
@@ -183,8 +191,9 @@ class EditAccount extends Component {
           </div>
           <div className="stackable doubling three column row">
             <div className="six wide column">
-              <Button positive fluid type="submit" disabled={pristine||submitting}>Save</Button>
-              <Button negative fluid type="button" onClick={reset} disabled={submitting}>Ｒecover</Button>
+              <Button positive type="submit" disabled={pristine||submitting}>Save</Button>
+              <Button negative type="button" onClick={reset} disabled={pristine||submitting}>Recover</Button>
+              <DeleteConfirm />
             </div>
           </div>
         </div>
