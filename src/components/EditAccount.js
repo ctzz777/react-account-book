@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { withRouter } from 'react-router';
-import { Input, Label, Form, TextArea, Button, Dropdown } from 'semantic-ui-react';
+import { Input, Label, Form, TextArea, Button, Confirm, Dropdown } from 'semantic-ui-react';
 import moment from 'moment';
 import { fetchCategories, fetchCurrentAccount, updateAccount } from '../actions';
 import CategoryList from './CategoryList';
@@ -81,6 +81,48 @@ const CategorySelectorField = ({ categories, input: { value, onChange }, meta: {
   );
 };
 
+class DeleteConfirm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+    };
+
+    this.show = this.show.bind(this);
+    this.handleConfirm = this.handleConfirm.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
+  }
+
+  show() {
+    console.log('qq')
+    this.setState({ open: true });
+  }
+
+  handleConfirm() {
+    console.log('cqq')
+    this.setState({ open: false });
+  }
+
+  handleCancel() {
+    console.log('qqq')
+    this.setState({ open: false });
+  }
+
+  render() {
+    return (
+      <div>
+        <Confirm
+          confirmButton="Delete"
+          open={this.state.open}
+          onCancel={this.handleCancel}
+          onConfirm={this.handleConfirm}
+        />
+        <Button type="button" onClick={this.show}>Show</Button>
+      </div>
+    )
+  }
+}
+
 class EditAccount extends Component {
   constructor(props) {
     super(props);
@@ -142,7 +184,7 @@ class EditAccount extends Component {
           <div className="stackable doubling three column row">
             <div className="six wide column">
               <Button positive fluid type="submit" disabled={pristine||submitting}>Save</Button>
-              <Button negative fluid onClick={reset} disabled={pristine||submitting}>Delete</Button>
+              <Button negative fluid type="button" onClick={reset} disabled={submitting}>Ｒecover</Button>
             </div>
           </div>
         </div>
