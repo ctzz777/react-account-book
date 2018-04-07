@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
+import { withRouter } from 'react-router'
 import { Input, Label, Form, TextArea, Button, Dropdown } from 'semantic-ui-react';
 import moment from 'moment';
-import { fetchCategories } from '../actions';
+import { fetchCategories, saveAccount } from '../actions';
 import CategoryList from './CategoryList';
 
 const validate = values => {
@@ -158,16 +159,17 @@ AddAccount = connect(
   mapStateToProps,
 )(AddAccount);
 
-export default connect(
+export default withRouter(connect(
   state => ({
     initialValues: {
       date: state.date.format('YYYYMMDD'),
       accountBookId: '5ab29280e571a216933fd215',
-    } // pull initial values from account reducer
+    }
   }),
 )(reduxForm({
   form: 'AddAccount',
   validate,
-  onSubmit: (value) => alert(JSON.stringify(value, null, 2)),
+  onSubmit: (value, dispatch) => dispatch(saveAccount(value)),
+  onSubmitSuccess: (result, dispatch, props) => props.history.push('/'),
   enableReinitialize: true,
-})(AddAccount));
+})(AddAccount)));

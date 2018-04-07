@@ -18,6 +18,12 @@ export const FETCH_CATEGORIES_FAILURE = 'FETCH_CATEGORIES_FAILURE';
 export const FETCH_CURRENT_ACCOUNT_REQUEST = 'FETCH_CURRENT_ACCOUNT_REQUEST';
 export const FETCH_CURRENT_ACCOUNT_SUCCESS = 'FETCH_CURRENT_ACCOUNT_SUCCESS';
 export const FETCH_CURRENT_ACCOUNT_FAILURE = 'FETCH_CURRENT_ACCOUNT_FAILURE';
+export const SAVE_ACCOUNT_REQUEST = 'SAVE_ACCOUNT_REQUEST';
+export const SAVE_ACCOUNT_SUCCESS = 'SAVE_ACCOUNT_SUCCESS';
+export const SAVE_ACCOUNT_FAILURE = 'SAVE_ACCOUNT_FAILURE';
+export const UPDATE_ACCOUNT_REQUEST = 'UPDATE_ACCOUNT_REQUEST';
+export const UPDATE_ACCOUNT_SUCCESS = 'UPDATE_ACCOUNT_SUCCESS';
+export const UPDATE_ACCOUNT_FAILURE = 'UPDATE_ACCOUNT_FAILURE';
 
 
 export function setDate(date) {
@@ -123,6 +129,39 @@ export function fetchCurrentAccount(id) {
       })
       .catch((error) => {
         dispatch(fetchCurrentAccountfailure(error));
+      });
+  }
+};
+
+function saveAccountRequest() {
+  return {
+    type: SAVE_ACCOUNT_REQUEST
+  };
+};
+
+function saveAccountSuccess(account) {
+  return {
+    type: SAVE_ACCOUNT_SUCCESS,
+    account,
+  };
+};
+
+function saveAccountfailure(error) {
+  return {
+    type: SAVE_ACCOUNT_FAILURE,
+    error,
+  };
+};
+
+export function saveAccount(account) {
+  return (dispatch) => {
+    dispatch(saveAccountRequest());
+    return axios.post('/api/account', account)
+      .then((res) => {
+        dispatch(saveAccountRequest(res.data));
+      })
+      .catch((error) => {
+        dispatch(saveAccountfailure(error));
       });
   }
 };
