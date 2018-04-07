@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
-import { withRouter } from 'react-router'
+import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
+import { withRouter } from 'react-router';
 import { Input, Label, Form, TextArea, Button, Dropdown } from 'semantic-ui-react';
 import moment from 'moment';
 import { fetchCategories, saveAccount } from '../actions';
@@ -169,7 +169,7 @@ export default withRouter(connect(
 )(reduxForm({
   form: 'AddAccount',
   validate,
-  onSubmit: (value, dispatch) => dispatch(saveAccount(value)),
+  onSubmit: (values, dispatch) => dispatch(saveAccount(values)),
   onSubmitSuccess: (result, dispatch, props) => props.history.push('/'),
   enableReinitialize: true,
 })(AddAccount)));

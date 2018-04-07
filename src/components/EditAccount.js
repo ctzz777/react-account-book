@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
+import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
+import { withRouter } from 'react-router';
 import { Input, Label, Form, TextArea, Button, Dropdown } from 'semantic-ui-react';
 import moment from 'moment';
-import { fetchCategories, fetchCurrentAccount } from '../actions';
+import { fetchCategories, fetchCurrentAccount, updateAccount } from '../actions';
 import CategoryList from './CategoryList';
 
 const validate = values => {
@@ -140,8 +141,8 @@ class EditAccount extends Component {
           </div>
           <div className="stackable doubling three column row">
             <div className="six wide column">
-              <Button positive type="submit" disabled={pristine||submitting}>Save</Button>
-              <Button negative onClick={reset} disabled={pristine||submitting}>Clear</Button>
+              <Button positive fluid type="submit" disabled={pristine||submitting}>Save</Button>
+              <Button negative fluid onClick={reset} disabled={pristine||submitting}>Delete</Button>
             </div>
           </div>
         </div>
@@ -161,7 +162,7 @@ EditAccount = connect(
   mapStateToProps,
 )(EditAccount);
 
-export default connect(
+export default withRouter(connect(
   state => ({
     initialValues: {
       ...state.currentAccount,
@@ -171,6 +172,7 @@ export default connect(
 )(reduxForm({
   form: 'EditAccount',
   validate,
-  onSubmit: (value) => alert(JSON.stringify(value, null, 2)),
+  onSubmit: (values, dispatch) => dispatch(updateAccount(values)),
+  onSubmitSuccess: (result, dispatch, props) => props.history.push('/'),
   enableReinitialize: true,
-})(EditAccount));
+})(EditAccount)));

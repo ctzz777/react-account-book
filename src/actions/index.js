@@ -1,7 +1,7 @@
 import moment from 'moment';
 import axios from 'axios';
 
-const authToken = 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhYjI5MjgwZTU3MWEyMTY5MzNmZDIxNCIsImlhdCI6MTUyMzAyMzUzMCwiZXhwIjoxNTIzMTEzNTMwfQ.-SIBJ3aT2OwGTS6E9FEtMCmt8kGLYrayZEjLlqqmqhQ';
+const authToken = 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhYjI5MjgwZTU3MWEyMTY5MzNmZDIxNCIsImlhdCI6MTUyMzExOTgzMywiZXhwIjoxNTIzMjA5ODMzfQ.kEfpARgmz3exHdYyn462ZMfvM0g-G9LMqI5WSssJphY';
 axios.defaults.baseURL = 'http://localhost:3001';
 axios.defaults.headers.common['Authorization'] = authToken;
 
@@ -158,10 +158,49 @@ export function saveAccount(account) {
     dispatch(saveAccountRequest());
     return axios.post('/api/account', account)
       .then((res) => {
-        dispatch(saveAccountRequest(res.data));
+        dispatch(saveAccountSuccess(res.data));
       })
       .catch((error) => {
         dispatch(saveAccountfailure(error));
+      });
+  }
+};
+
+function updateAccountRequest() {
+  return {
+    type: UPDATE_ACCOUNT_REQUEST
+  };
+};
+
+function updateAccountSuccess(account) {
+  return {
+    type: UPDATE_ACCOUNT_SUCCESS,
+    account,
+  };
+};
+
+function updateAccountfailure(error) {
+  return {
+    type: UPDATE_ACCOUNT_FAILURE,
+    error,
+  };
+};
+
+export function updateAccount(data) {
+  const id = data._id;
+  const account = {
+    amount: data.amount,
+    category: data.category,
+    description: data.description,
+  }
+  return (dispatch) => {
+    dispatch(updateAccountRequest());
+    return axios.put(`/api/account/${id}`, account)
+      .then((res) => {
+        dispatch(updateAccountSuccess(res.data));
+      })
+      .catch((error) => {
+        dispatch(updateAccountfailure(error));
       });
   }
 };

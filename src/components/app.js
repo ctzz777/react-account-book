@@ -19,7 +19,6 @@ export default class App extends Component {
               AddAccount
             </Menu.Item>
           </Menu>
-          <hr />
           <Route path="/" exact component={AccountPage} />
           <Route path="/addAccount" component={AddAccount} />
           <Route path="/editAccount/:id" component={EditAccount} />
