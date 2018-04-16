@@ -30,8 +30,10 @@ a:hover {
 .CalendarDay__selected,
 .CalendarDay__selected:hover,
 .CalendarDay__selected:active {
-  background: #FFA500;
-  border: #FFA500;
+  /* background: #FFA500;
+  border: #FFA500; */
+  background: #2185d0;
+  border: #2185d0;
 }
 
 .DayPickerKeyboardShortcuts_show__bottomRight,
@@ -48,7 +50,8 @@ a:hover {
 }
 
 .DateInput_input__focused {
-  border-bottom: 2px solid #FFA500;
+  /* border-bottom: 2px solid #FFA500; */
+  border-bottom: 2px solid #2185d0;
 }
 
 .DayPicker_portal__horizontal {

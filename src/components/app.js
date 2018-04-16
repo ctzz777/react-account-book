@@ -23,7 +23,7 @@ export default class App extends Component {
     return (
       <Router>
         <div>
-          <Menu pointing secondary icon='labeled'>
+          <Menu pointing secondary icon='labeled' color='blue' inverted>
             <Menu.Item 
               as={NavLink}
               to='/'
