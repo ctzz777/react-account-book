@@ -1,7 +1,7 @@
 import moment from 'moment';
 import axios from 'axios';
 
-const authToken = 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhYjI5MjgwZTU3MWEyMTY5MzNmZDIxNCIsImlhdCI6MTUyMzExOTgzMywiZXhwIjoxNTIzMjA5ODMzfQ.kEfpARgmz3exHdYyn462ZMfvM0g-G9LMqI5WSssJphY';
+const authToken = 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhYjI5MjgwZTU3MWEyMTY5MzNmZDIxNCIsImlhdCI6MTUyMzg4NTk3MSwiZXhwIjoxNTIzOTc1OTcxfQ.Z607qBCFaAoss4HOlYxjAOtLv2RdG7JAuc6Lb1fLOdw';
 axios.defaults.baseURL = 'http://localhost:3001';
 axios.defaults.headers.common['Authorization'] = authToken;
 
@@ -195,6 +195,7 @@ export function updateAccount(data) {
     amount: data.amount,
     category: data.category,
     description: data.description,
+    rating: data.rating,
   }
   return (dispatch) => {
     dispatch(updateAccountRequest());

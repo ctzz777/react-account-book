@@ -12,6 +12,7 @@ export default class App extends Component {
         <div>
           <Menu pointing secondary icon='labeled'>
             <Menu.Item as={NavLink} to='/'>
+              <Icon name='home' />
               Home
             </Menu.Item>
             <Menu.Item as={NavLink} to='/addAccount'>

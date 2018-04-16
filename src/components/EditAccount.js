@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { withRouter } from 'react-router';
-import { Input, Label, Form, TextArea, Button, Modal, Dropdown, Confirm } from 'semantic-ui-react';
+import { Input, Label, Form, TextArea, Button, Modal, Dropdown, Confirm, Rating } from 'semantic-ui-react';
 import moment from 'moment';
 import { fetchCategories, fetchCurrentAccount, updateAccount, deleteAccount } from '../actions';
 import CategoryList from './CategoryList';
@@ -79,6 +79,21 @@ const CategorySelectorField = ({ categories, input: { value, onChange }, meta: {
       options={options}
     />
   );
+};
+
+const ratingField = ({ input: { value, onChange } }) => {
+  return (
+    <Form.Field>
+      <Rating
+        icon='star' 
+        maxRating={5}
+        clearable
+        size='huge'
+        onRate={(event, data) => onChange(data.rating)}
+        rating={value}
+      />
+    </Form.Field>
+  )
 };
 
 class DeleteConfirm extends Component {
@@ -187,6 +202,15 @@ class EditAccount extends Component {
                 label="Category"
                 component={CategorySelectorField}
                 categories={categories}
+              />
+            </div>
+          </div>
+          <div className="stackable doubling three column row">
+            <div className="six wide column">
+              <Field
+                name="rating"
+                label="Rating"
+                component={ratingField}
               />
             </div>
           </div>

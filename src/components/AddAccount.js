@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { withRouter } from 'react-router';
-import { Input, Label, Form, TextArea, Button, Dropdown } from 'semantic-ui-react';
+import { Input, Label, Form, TextArea, Button, Dropdown, Rating } from 'semantic-ui-react';
 import moment from 'moment';
 import { fetchCategories, saveAccount } from '../actions';
 import CategoryList from './CategoryList';
@@ -81,6 +81,21 @@ const CategorySelectorField = ({ categories, input: { value, onChange }, meta: {
   );
 };
 
+const ratingField = ({ input: { value, onChange } }) => {
+  return (
+    <Form.Field>
+      <Rating
+        icon='star' 
+        maxRating={5}
+        clearable
+        size='huge'
+        onRate={(event, data) => onChange(data.rating)}
+        rating={value}
+      />
+    </Form.Field>
+  )
+};
+
 class AddAccount extends Component {
   constructor(props) {
     super(props);
@@ -131,6 +146,15 @@ class AddAccount extends Component {
           <div className="stackable doubling three column row">
             <div className="six wide column">
               <Field
+                name="rating"
+                label="Rating"
+                component={ratingField}
+              />
+            </div>
+          </div>
+          <div className="stackable doubling three column row">
+            <div className="six wide column">
+              <Field
                 name="description"
                 label="Description"
                 component={DescriptionField}
@@ -164,6 +188,7 @@ export default withRouter(connect(
     initialValues: {
       date: state.date.format('YYYYMMDD'),
       accountBookId: '5ab29280e571a216933fd215',
+      rating: 3,
     }
   }),
 )(reduxForm({
