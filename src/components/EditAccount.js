@@ -227,6 +227,10 @@ class EditAccount extends Component {
             <div className="six wide column">
               <Button positive type="submit" disabled={pristine||submitting}>Save</Button>
               <Button negative type="button" onClick={reset} disabled={pristine||submitting}>Recover</Button>
+            </div>
+          </div>
+          <div className="stackable doubling three column row">
+            <div className="six wide column">
               <DeleteConfirm 
                 handleDelete={this.handleDelete}
               />
