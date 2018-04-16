@@ -14,7 +14,7 @@ const validate = values => {
     'category',
   ];
   requiredFields.forEach(field => {
-    if (!values[field]) {
+    if (!values[field]&&values[field]!==0) {
       errors[field] = 'Required'
     }
   });
@@ -187,7 +187,7 @@ export default withRouter(connect(
   state => ({
     initialValues: {
       date: state.date.format('YYYYMMDD'),
-      accountBookId: '5ab29280e571a216933fd215',
+      accountBookId: '5ad4cd33a18bdc25a927b1d8',
       rating: 3,
     }
   }),
