@@ -1,8 +1,8 @@
 import moment from 'moment';
 import axios from 'axios';
 
-const authToken = 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDRjZDMwYTE4YmRjMjVhOTI3YjFkNyIsImlhdCI6MTUyMzg5NTYyNCwiZXhwIjoxNTIzOTg1NjI0fQ.7CfZ5mhjnBTSM1zVokQaIJG5wM84A-EmEJ7M0564nMI';
-axios.defaults.baseURL = 'http://localhost:3001';
+const authToken = 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDRjZDMwYTE4YmRjMjVhOTI3YjFkNyIsImlhdCI6MTUyNDEzNzkzNiwiZXhwIjoxNTI0MjI3OTM2fQ.60W18MerB3TTYQ3GhxlXDN0JOOt6lkumEsIzjAYHsNk';
+axios.defaults.baseURL = 'https://serene-brook-51871.herokuapp.com';
 axios.defaults.headers.common['Authorization'] = authToken;
 
 const accountBookId = '5ad4cd33a18bdc25a927b1d8';
