@@ -47,7 +47,7 @@ const AmountField = ({input, label, meta: {touched, error}, ...custom}) => (
     {...input}
     {...custom}
   />
-)
+);
 
 const DateField = ({input, label, ...custom}) => (
   <Form.Input
@@ -59,7 +59,7 @@ const DateField = ({input, label, ...custom}) => (
     {...input}
     {...custom}
   />
-)
+);
 
 const CategorySelectorField = ({ categories, input: { value, onChange }, meta: {touched, error}, label}) => {
   const options = categories.map(category => ({

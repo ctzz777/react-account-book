@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom'
 import AccountPage from './AccountPage';
 import AddAccount from './AddAccount';
 import EditAccount from './EditAccount';
+import Login from './Login';
 
 const Nav = props => (
 	<NavLink
@@ -34,10 +35,19 @@ const App = () => {
             <Icon name='add circle' />
             Add
           </Menu.Item>
+          <Menu.Item 
+            as={Nav}
+            to='/login'
+            name='login' 
+          >
+            <Icon name='universal access' />
+            Login
+          </Menu.Item>
         </Menu>
         <Route path="/" exact component={AccountPage} />
         <Route path="/addAccount" component={AddAccount} />
         <Route path="/editAccount/:id" component={EditAccount} />
+        <Route path="/login" component={Login} />
       </div>
     </Router>
   );

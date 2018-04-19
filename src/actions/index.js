@@ -3,7 +3,13 @@ import axios from 'axios';
 
 const authToken = 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDRjZDMwYTE4YmRjMjVhOTI3YjFkNyIsImlhdCI6MTUyNDEzNzkzNiwiZXhwIjoxNTI0MjI3OTM2fQ.60W18MerB3TTYQ3GhxlXDN0JOOt6lkumEsIzjAYHsNk';
 axios.defaults.baseURL = 'https://serene-brook-51871.herokuapp.com';
-axios.defaults.headers.common['Authorization'] = authToken;
+axios.interceptors.request.use(function (config) {
+  const token = localStorage.getItem('token') ? localStorage.getItem('token') : '';
+  config.headers.Authorization = `Bearer ${token}`;
+  return config;
+}, function (error) {
+  return Promise.reject(error);
+});
 
 const accountBookId = '5ad4cd33a18bdc25a927b1d8';
 const formatPattern = 'YYYYMMDD';
@@ -27,6 +33,9 @@ export const UPDATE_ACCOUNT_FAILURE = 'UPDATE_ACCOUNT_FAILURE';
 export const DELETE_ACCOUNT_REQUEST = 'DELETE_ACCOUNT_REQUEST';
 export const DELETE_ACCOUNT_SUCCESS = 'DELETE_ACCOUNT_SUCCESS';
 export const DELETE_ACCOUNT_FAILURE = 'DELETE_ACCOUNT_FAILURE';
+export const LOGIN_REQUEST = 'LOGIN_REQUEST';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
 
 export function setDate(date) {
@@ -238,6 +247,40 @@ export function deleteAccount(id) {
       })
       .catch((error) => {
         dispatch(deleteAccountfailure(error));
+      });
+  }
+};
+
+function loginRequest() {
+  return {
+    type: LOGIN_REQUEST
+  };
+};
+
+function loginSuccess(login) {
+  return {
+    type: LOGIN_SUCCESS,
+    login,
+  };
+};
+
+function loginfailure(error) {
+  return {
+    type: LOGIN_FAILURE,
+    error,
+  };
+};
+
+export function login(loginData) {
+  return (dispatch) => {
+    dispatch(loginRequest());
+    return axios.post('/auth/login', loginData)
+      .then((res) => {
+        localStorage.setItem('token', res.data.token);
+        dispatch(loginSuccess(res.data));
+      })
+      .catch((error) => {
+        dispatch(loginfailure(error));
       });
   }
 };
