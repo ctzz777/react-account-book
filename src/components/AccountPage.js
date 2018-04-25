@@ -17,6 +17,13 @@ class AccountPage extends Component {
     dispatch(fetchAccounts(date));
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const { dispatch, date, accountBook } = this.props;
+    if (prevProps.accountBook._id !== accountBook._id) {
+      dispatch(fetchAccounts(date));
+    }
+  }
+
   render() {
     const { date, accounts, loading, total, handleDateChange, accountBook } = this.props;
 

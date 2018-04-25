@@ -11,7 +11,6 @@ axios.interceptors.request.use(function (config) {
   return Promise.reject(error);
 });
 
-// const accountBookId = '5ad4cd33a18bdc25a927b1d8';
 const formatPattern = 'YYYYMMDD';
 
 export const SET_DATE = 'SET_DATE';
