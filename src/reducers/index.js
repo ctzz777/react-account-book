@@ -3,6 +3,7 @@ import { reducer as formReducer } from 'redux-form'
 import { SET_DATE, FETCH_ACCOUNTS_REQUEST, FETCH_ACCOUNTS_SUCCESS, FETCH_ACCOUNTS_FAILURE, SET_SELECTED_CATEGORY, FETCH_CATEGORIES_REQUEST, FETCH_CATEGORIES_SUCCESS, FETCH_CATEGORIES_FAILURE } from '../actions';
 import { FETCH_CURRENT_ACCOUNT_REQUEST, FETCH_CURRENT_ACCOUNT_SUCCESS, FETCH_CURRENT_ACCOUNT_FAILURE } from '../actions';
 import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE } from '../actions';
+import { FETCH_ACCOUNT_BOOK_REQUEST, FETCH_ACCOUNT_BOOK_SUCCESS, FETCH_ACCOUNT_BOOK_FAILURE } from '../actions';
 import moment from 'moment';
 
 const date = (state=moment(), action) => {
@@ -81,6 +82,19 @@ const login = (state={}, action) => {
   }
 }
 
+const accountBook = (state={}, action) => {
+  switch (action.type) {
+    case FETCH_ACCOUNT_BOOK_REQUEST:
+      return state;
+    case FETCH_ACCOUNT_BOOK_SUCCESS:
+      return action.accountBook;
+    case FETCH_ACCOUNT_BOOK_FAILURE:
+      return {};
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
   date,
   accounts,
@@ -88,6 +102,7 @@ const rootReducer = combineReducers({
   categories,
   currentAccount,
   login,
+  accountBook,
   form: formReducer,
 });
 

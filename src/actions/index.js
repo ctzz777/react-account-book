@@ -11,7 +11,7 @@ axios.interceptors.request.use(function (config) {
   return Promise.reject(error);
 });
 
-const accountBookId = '5ad4cd33a18bdc25a927b1d8';
+// const accountBookId = '5ad4cd33a18bdc25a927b1d8';
 const formatPattern = 'YYYYMMDD';
 
 export const SET_DATE = 'SET_DATE';
@@ -36,6 +36,9 @@ export const DELETE_ACCOUNT_FAILURE = 'DELETE_ACCOUNT_FAILURE';
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+export const FETCH_ACCOUNT_BOOK_REQUEST = 'FETCH_ACCOUNT_BOOK_REQUEST';
+export const FETCH_ACCOUNT_BOOK_SUCCESS = 'FETCH_ACCOUNT_BOOK_SUCCESS';
+export const FETCH_ACCOUNT_BOOK_FAILURE = 'FETCH_ACCOUNT_BOOK_FAILURE';
 
 
 export function setDate(date) {
@@ -66,16 +69,20 @@ function fetchAccountsfailure(error) {
 };
 
 export function fetchAccounts(date) {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const { accountBook } = getState();
+    const accountBookId = accountBook._id
     const formatDate = date.format(formatPattern);
-    dispatch(fetchAccountsRequest());
-    axios.get(`/api/account/accountBook/${accountBookId}/date/${formatDate}`)
-      .then((res) => {
-        dispatch(fetchAccountsSuccess(res.data));
-      })
-      .catch((error) => {
-        dispatch(fetchAccountsfailure(error));
-      });
+    if (accountBookId) {
+      dispatch(fetchAccountsRequest());
+      axios.get(`/api/account/accountBook/${accountBookId}/date/${formatDate}`)
+        .then((res) => {
+          dispatch(fetchAccountsSuccess(res.data));
+        })
+        .catch((error) => {
+          dispatch(fetchAccountsfailure(error));
+        });
+    }
   }
 };
 
@@ -281,6 +288,39 @@ export function login(loginData) {
       })
       .catch((error) => {
         dispatch(loginfailure(error));
+      });
+  }
+};
+
+function fetchAccountBookRequest() {
+  return {
+    type: FETCH_ACCOUNT_BOOK_REQUEST
+  };
+};
+
+function fetchAccountBookSuccess(accountBook) {
+  return {
+    type: FETCH_ACCOUNT_BOOK_SUCCESS,
+    accountBook,
+  };
+};
+
+function fetchAccountBookfailure(error) {
+  return {
+    type: FETCH_ACCOUNT_BOOK_FAILURE,
+    error,
+  };
+};
+
+export function fetchAccountBook(id) {
+  return (dispatch) => {
+    dispatch(fetchAccountBookRequest());
+    axios.get('/api/accountBook/mine')
+      .then((res) => {
+        dispatch(fetchAccountBookSuccess(res.data));
+      })
+      .catch((error) => {
+        dispatch(fetchAccountBookfailure(error));
       });
   }
 };

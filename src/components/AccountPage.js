@@ -18,7 +18,7 @@ class AccountPage extends Component {
   }
 
   render() {
-    const { date, accounts, loading, total, handleDateChange } = this.props;
+    const { date, accounts, loading, total, handleDateChange, accountBook } = this.props;
 
     return (
       <div className="ui centered grid">
@@ -57,6 +57,7 @@ const accountTotal = accounts => {
 const mapStateToProps = state => {
   return {
     date: state.date,
+    accountBook: state.accountBook,
     accounts: state.accounts,
     loading: state.loading,
     total: accountTotal(state.accounts),

@@ -164,8 +164,8 @@ class EditAccount extends Component {
     const { dispatch, match, history } = this.props;
     const id = match.params.id;
     dispatch(deleteAccount(id))
-      .then(history.push('/'))
-      .catch(history.push('/'));
+      .then(() => history.push('/'))
+      .catch(() => history.push('/'));
   }
 
   render() {

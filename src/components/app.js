@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Menu, Icon } from 'semantic-ui-react';
 import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
-import AccountPage from './AccountPage';
+import AccountBook from './AccountBook';
 import AddAccount from './AddAccount';
 import EditAccount from './EditAccount';
 import Login from './Login';
@@ -44,7 +44,7 @@ const App = () => {
             Login
           </Menu.Item>
         </Menu>
-        <Route path="/" exact component={AccountPage} />
+        <Route path="/" exact component={AccountBook} />
         <Route path="/addAccount" component={AddAccount} />
         <Route path="/editAccount/:id" component={EditAccount} />
         <Route path="/login" component={Login} />

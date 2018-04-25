@@ -187,7 +187,7 @@ export default withRouter(connect(
   state => ({
     initialValues: {
       date: state.date.format('YYYYMMDD'),
-      accountBookId: '5ad4cd33a18bdc25a927b1d8',
+      accountBookId: state.accountBook._id,
       rating: 3,
     }
   }),
