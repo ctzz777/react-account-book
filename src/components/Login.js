@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { withRouter } from 'react-router';
 import { Form, Button } from 'semantic-ui-react';
-import { login } from '../actions';
+import { login, logout } from '../actions';
 
 const InputField = ({input, label, meta: {touched, error}, ...custom}) => (
   <Form.Input
@@ -19,6 +19,8 @@ const InputField = ({input, label, meta: {touched, error}, ...custom}) => (
 class Login extends Component {
   constructor(props) {
     super(props);
+
+    this.props.dispatch(logout());
   }
 
   render() {

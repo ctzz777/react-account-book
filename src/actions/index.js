@@ -38,6 +38,7 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const FETCH_ACCOUNT_BOOK_REQUEST = 'FETCH_ACCOUNT_BOOK_REQUEST';
 export const FETCH_ACCOUNT_BOOK_SUCCESS = 'FETCH_ACCOUNT_BOOK_SUCCESS';
 export const FETCH_ACCOUNT_BOOK_FAILURE = 'FETCH_ACCOUNT_BOOK_FAILURE';
+export const LOGOUT = 'LOGOUT';
 
 
 export function setDate(date) {
@@ -323,3 +324,10 @@ export function fetchAccountBook(id) {
       });
   }
 };
+
+export function logout() {
+  localStorage.removeItem('token');
+  return {
+    type: LOGOUT,
+  }
+}
