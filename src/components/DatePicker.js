@@ -4,7 +4,7 @@ import { SingleDatePicker } from 'react-dates';
 import moment from 'moment';
 import { setDate } from '../actions';
 import { Button } from 'reactstrap';
-import './datePicker.css';
+import './DatePicker.css';
 
 class DatePicker extends Component {
   constructor(props) {
