@@ -23,6 +23,8 @@ const accounts = (state=[], action) => {
       return action.accounts;
     case FETCH_ACCOUNTS_FAILURE:
       return [];
+    case LOGOUT:
+      return [];
     default:
       return state;
   }
@@ -91,6 +93,8 @@ const accountBook = (state={}, action) => {
     case FETCH_ACCOUNT_BOOK_SUCCESS:
       return action.accountBook;
     case FETCH_ACCOUNT_BOOK_FAILURE:
+      return {};
+    case LOGOUT:
       return {};
     default:
       return state;
