@@ -19,7 +19,7 @@ const App = () => {
     <Router>
       <div>
         <Menu pointing secondary icon='labeled' color='blue' inverted>
-          <Menu.Item 
+          <Menu.Item
             as={Nav}
             to='/'
             name='home' 
