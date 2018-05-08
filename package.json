@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "dev": "webpack-dev-server --mode development",
+    "dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "devold": "webpack-dev-server --mode development",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "postinstall": "webpack -p",
+    "start": "node server.js"
   },
   "author": "ctzz777",
   "license": "MIT",
